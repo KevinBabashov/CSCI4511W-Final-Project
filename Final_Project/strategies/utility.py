@@ -4,7 +4,9 @@ import numpy as np
 import os
 
 def plot_wealth_over_time(wealth_history):
-    plt.figure(figsize=(16, 9))  # Larger figure size
+    import matplotlib.pyplot as plt
+
+    plt.figure(figsize=(16, 9))
 
     for name, history in wealth_history.items():
         plt.plot(history, label=name)
@@ -12,12 +14,20 @@ def plot_wealth_over_time(wealth_history):
     plt.xlabel("Number of Interactions", fontsize=14)
     plt.ylabel("Cumulative Wealth", fontsize=14)
     plt.title("Agent Wealth Over Time (Per Interaction)", fontsize=16)
-
-    # Place legend outside the plot for readability
-    plt.legend(fontsize=10, loc='upper left', bbox_to_anchor=(1, 1))
     plt.grid(True)
-    plt.tight_layout()  # Prevent clipping of labels and legend
+
+    # Legend positioned below the plot in a multi-column table format
+    plt.legend(
+        loc='upper center',
+        bbox_to_anchor=(0.5, -0.25),
+        ncol=6,         # adjust this number depending on how many methods you have
+        fontsize=9,
+        frameon=False
+    )
+
+    plt.tight_layout(rect=[0, 0.05, 1, 1])
     plt.show()
+
 
 
 def plot_tournament_results(env):  
